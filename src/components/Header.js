@@ -15,9 +15,10 @@ class Header extends React.Component {
       .reduce((acc, expense) => {
         const value = parseFloat(expense.value);
         const rate = parseFloat(expense.exchangeRates[expense.currency].ask);
-        return acc + (value * rate);
+          return acc + (value * rate);
       }, 0);
   }
+ 
 
   render() {
     const { email } = this.props;
@@ -33,7 +34,12 @@ class Header extends React.Component {
                    Despesa Total: R$
               {' '}
               <span data-testid="total-field">
-                {this.ExpenseValue().toFixed(2)}BRL
+                {this.ExpenseValue().toFixed(2)}
+                
+              </span>
+              <span data-testid="header-currency-field">
+                {'BRL'}
+                
               </span>
            
           </div>

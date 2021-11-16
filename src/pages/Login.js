@@ -81,6 +81,7 @@ class Login extends React.Component {
               type="submit"
               disabled={!this.ValidateLogin(email, password)}
               onClick={this.onLogin}
+        
             >
               Entrar
             </button>

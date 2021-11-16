@@ -69,7 +69,7 @@ class WalletForm extends React.Component {
           <ExpenseInput
             name="tag"
             type="select"
-            label="Categoria"
+            label="Tag"
             options={['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde']}
           />
           <ExpenseInput
