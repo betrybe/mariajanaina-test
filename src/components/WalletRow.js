@@ -20,7 +20,7 @@ class WalletRow extends React.Component {
 
   handleEdit(id) {
     const { isEditing: isEditingAction } = this.props;
-    isEditingAction(id);
+    isEditingAction(id);    
   }
 
   render() {
@@ -54,7 +54,7 @@ class WalletRow extends React.Component {
             onClick={() => this.handleEdit(expense.id)}>
             <GoPencil />
           </button>
-          <button
+          <button           
             type="button"
             data-testid="delete-btn"
             id="btnDelete"
@@ -79,7 +79,7 @@ WalletRow.propTypes = {
 
 const mapDispatchToProps = {
   removeExpense,
-  isEditing,
+  isEditing,  
 };
 
 export default connect(null, mapDispatchToProps)(WalletRow);

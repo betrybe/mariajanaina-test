@@ -9,12 +9,12 @@ class WalletForm extends React.Component {
   constructor(props) {
     super(props);
     this.handleAdd = this.handleAdd.bind(this);
-    this.afterEdit = this.afterEdit.bind(this);
+    this.afterEdit = this.afterEdit.bind(this);   
+ 
   }
-
   async componentDidMount() {
-    const { loadCurrencies: loadCurrenciesAction } = this.props;
-    await loadCurrenciesAction();
+    const { loadCurrencies: loadCurrenciesAction } = this.props;  
+    await loadCurrenciesAction();    
   }
 
   async handleAdd(event) {
@@ -22,23 +22,29 @@ class WalletForm extends React.Component {
     event.persist();
     const {
       handleAdd: handleAddAction,
-      loadCurrencies: loadCurrenciesAction,
+      loadCurrencies: loadCurrenciesAction,      
     } = this.props;
     await loadCurrenciesAction();
-    handleAddAction();
+    handleAddAction();        
     event.target.parentNode.reset();
+
   }
 
-  afterEdit(event) {
+    afterEdit(event) {
     event.preventDefault();
-    const { handleAfterEdit: handleAfterEditAction } = this.props;
-    handleAfterEditAction();
+    const { handleAfterEdit: handleAfterEditAction } = this.props;    ;
+     handleAfterEditAction();    
+    event.target.parentNode.reset();
+
+    
   }
 
   render() {
-    const { editing, currencies } = this.props;
+    const { editing, currencies, } = this.props;  
+    
+    const { expenses } = this.props;
 
-    const buttonGen = (isEditing) => (
+    const btnWallet = (isEditing) => (
       <button
         type="submit"
         onClick={isEditing ? this.afterEdit : this.handleAdd}
@@ -46,14 +52,17 @@ class WalletForm extends React.Component {
         {isEditing ? 'Editar despesa' : 'Adicionar despesa'}
       </button>
     );
+    
 
     return (
       <div
-        className="form"
+        className="addform"
         style={editing ? { background: '#2FC18C' } : null}
       >
-        <form>
-          <ExpenseInput name="value" type="number" label="Valor" />
+         
+        <form>     
+          <ExpenseInput name="value" type="number" label="Valor" value={expenses.value}
+              />
           <ExpenseInput
             name="currency"
             type="select"
@@ -64,6 +73,7 @@ class WalletForm extends React.Component {
             name="method"
             type="select"
             label="Método de Pagamento"
+      
             options={['Dinheiro', 'Cartão de crédito', 'Cartão de débito']}
           />
           <ExpenseInput
@@ -75,7 +85,7 @@ class WalletForm extends React.Component {
           <ExpenseInput
             name="description" label="Descrição" />
 
-          {buttonGen(editing)}
+          {btnWallet(editing)}
         </form>
       </div>
     );
@@ -85,6 +95,7 @@ class WalletForm extends React.Component {
 WalletForm.propTypes = {
   currencies: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.array]))
     .isRequired,
+    expenses: PropTypes.arrayOf(PropTypes.object).isRequired,
   loadCurrencies: PropTypes.func.isRequired,
   handleAfterEdit: PropTypes.func.isRequired,
   handleAdd: PropTypes.func.isRequired,

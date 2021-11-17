@@ -49,7 +49,7 @@ class ExpenseInput extends React.Component {
           name={ name }
           id={ name }
           type={ type }
-          value={value}
+          value={ value }
           data-testid={ `${name}-input` }
           onChange={ this.onChange }
         />
@@ -62,7 +62,6 @@ ExpenseInput.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   type: PropTypes.string,
-  value:PropTypes.string,
   options: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.array])),
   changeExpense: PropTypes.func.isRequired,
 };

@@ -56,4 +56,6 @@ export const handleAfterEdit = () => ({
   type: FINISHES_EDIT,
 });
 
+
+
 export default loadCurrencies;
